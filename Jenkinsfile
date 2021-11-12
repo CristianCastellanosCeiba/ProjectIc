@@ -12,7 +12,7 @@ pipeline {
 
     //Una sección que define las herramientas “preinstaladas” en Jenkins (JDK, Gradle, Ant, Maven, Node), si no se usan en el proyecto no configura esta sección.
     tools {
-        jdk 'JDK8_Mac' //Versión preinstalada en la Configuración del Master
+        jdk 'JDK11_Mac' //Versión preinstalada en la Configuración del Master
     }
     // Existen actualmente en el agente JDK (8, 11, 12)
     // Para JDK 8: JDK8_Mac
