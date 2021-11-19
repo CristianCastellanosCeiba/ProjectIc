@@ -1,5 +1,6 @@
 package com.example.infrastructure.anticorruption
 
+import com.example.domain.entity.Auto
 import com.example.domain.entity.Vehicle
 import com.example.infrastructure.database.entity.VehicleEntity
 import java.util.*
@@ -15,7 +16,7 @@ class VehicleTranslator {
     }
 
     fun fromEntityToDomain(vehicleEntity: VehicleEntity): Vehicle {
-        return Vehicle(
+        return Auto(
             vehicleEntity.registration,
             Date(vehicleEntity.hourEntry),
             Date(vehicleEntity.hourExit),
