@@ -8,9 +8,11 @@ import com.example.domain.entity.Motorcycle
 @Entity
 data class VehicleEntity(
     @PrimaryKey
-    val id: String = "",
-    @ColumnInfo(name = "name")
-    val registration: String = "",
-    @ColumnInfo(name = "name")
-    val motorcycle: String = ""
+    val registration: String,
+    @ColumnInfo(name = "hourEntry")
+    val hourEntry: String,
+    @ColumnInfo(name = "hourExit")
+    val hourExit: String,
+    @ColumnInfo(name = "type")
+    val type: String
 )
