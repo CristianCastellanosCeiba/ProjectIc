@@ -3,10 +3,9 @@ package com.example.infrastructure.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.domain.entity.Motorcycle
 
 @Entity
-data class VehicleEntity(
+data class AutoEntity(
     @PrimaryKey
     val registration: String,
     @ColumnInfo(name = "hourEntry")

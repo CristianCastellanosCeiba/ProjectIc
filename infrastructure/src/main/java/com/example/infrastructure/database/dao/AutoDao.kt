@@ -4,16 +4,17 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.infrastructure.database.entity.VehicleEntity
+import com.example.infrastructure.anticorruption.AutoTranslator
+import com.example.infrastructure.database.entity.AutoEntity
 
 @Dao
-interface VehicleDao {
-    @Query("SELECT COUNT(*) FROM VehicleEntity")
+interface AutoDao {
+    @Query("SELECT COUNT(*) FROM AutoEntity")
     suspend fun getAllVehicles(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveVehicles(vehicle: VehicleEntity)
+    suspend fun saveVehicles(auto: AutoEntity)
 
-    @Query("DELETE FROM VehicleEntity WHERE registration = :registration")
+    @Query("DELETE FROM AutoEntity WHERE registration = :registration")
     suspend fun deleteVehicle(registration: String)
 }

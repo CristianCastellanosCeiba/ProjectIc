@@ -4,12 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.infrastructure.database.dao.VehicleDao
-import com.example.infrastructure.database.entity.VehicleEntity
+import com.example.infrastructure.database.dao.AutoDao
+import com.example.infrastructure.database.entity.AutoEntity
+import com.example.infrastructure.database.entity.MotorciclyEntity
 
-@Database(entities = [VehicleEntity::class], version = 1)
+@Database(entities = [AutoEntity::class, MotorciclyEntity::class], version = 1)
 abstract class VehicleDb: RoomDatabase() {
-    abstract fun vehicleDao(): VehicleDao
+    abstract fun vehicleDao(): AutoDao
 
     companion object {
         private var INSTANCE: VehicleDb? = null
