@@ -5,4 +5,5 @@
     <string name="exit">Salida</string>
     <string name="autoCapacity">Autos acutalmente</string>
     <string name="validatePrice">Validar pago</string>
+    <string name="cylinder">Ingrese la cilindraje *Solo motos*</string>
 </resources>

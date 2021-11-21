@@ -30,9 +30,12 @@ class AutoRepositoryImpl(context: Context): AutoRepository {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override suspend fun payment(registration: String, hourExit: Date): Double {
+    override suspend fun payment(registration: String, hourExit: Date): Long {
         val autoData = AutoTranslator().fromEntityToDomain(vehicleDb.vehicleDao().getVehicle(registration))
-        //return autoData.calculateHoursToPay(hourExit)
-        return autoData.getParkingHours()
+        return autoData.calculatePayment()
+    }
+
+    override suspend fun getAutos(): Int {
+        return vehicleDb.vehicleDao().getAllVehicles()
     }
 }

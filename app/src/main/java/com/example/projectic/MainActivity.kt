@@ -74,8 +74,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observer() {
-        autoViewModel.categories.observe(this, {
 
+        autoViewModel.getAllAutos().observe(this, {
+            binding.textView2.text = "Actos actualmente $it"
         })
 
         autoViewModel.errors.observe(this, {

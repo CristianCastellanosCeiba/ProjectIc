@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.infrastructure.anticorruption.AutoTranslator
 import com.example.infrastructure.database.entity.AutoEntity
 
 @Dao

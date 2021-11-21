@@ -9,9 +9,6 @@ import java.util.*
 
 class AutoViewModel(private val autoRepository: AutoRepositoryImpl): ViewModel() {
 
-    private val _categories = MutableLiveData<Auto>()
-    val categories: LiveData<Auto> = _categories
-
     private val _errors = MutableLiveData<Exception>()
     val errors: LiveData<Exception> = _errors
 
@@ -39,6 +36,10 @@ class AutoViewModel(private val autoRepository: AutoRepositoryImpl): ViewModel()
         } catch (e: Exception) {
             emit(e)
         }
+    }
+
+    fun getAllAutos() = liveData(Dispatchers.IO) {
+        emit(autoRepository.getAutos())
     }
 }
 
