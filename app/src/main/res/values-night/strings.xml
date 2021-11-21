@@ -1,7 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ProjectIc</string>
     <string name="agreeRegistration">Placa del vehiculo</string>
     <string name="entry">Entrada</string>
     <string name="exit">Salida</string>
-    <string name="autoCapacity">Autos acutalmente</string>
 </resources>
