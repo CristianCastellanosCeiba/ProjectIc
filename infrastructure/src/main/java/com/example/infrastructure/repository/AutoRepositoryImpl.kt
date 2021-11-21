@@ -5,7 +5,6 @@ import com.example.domain.entity.Auto
 import com.example.domain.repository.AutoRepository
 import com.example.infrastructure.anticorruption.AutoTranslator
 import com.example.infrastructure.database.VehicleDb
-import com.example.infrastructure.database.dao.AutoDao
 import java.util.*
 
 class AutoRepositoryImpl(context: Context): AutoRepository {
@@ -28,7 +27,8 @@ class AutoRepositoryImpl(context: Context): AutoRepository {
         vehicleDb.vehicleDao().deleteVehicle(registration)
     }
 
-    override suspend fun payment(auto: Auto, hourExit: Date) {
-        auto.calculateHoursToPay(auto, hourExit)
+    override suspend fun payment(registration: String, hourExit: Date) {
+        val autoData = AutoTranslator().fromEntityToDomain(vehicleDb.vehicleDao().getVehicle(registration))
+        autoData
     }
 }

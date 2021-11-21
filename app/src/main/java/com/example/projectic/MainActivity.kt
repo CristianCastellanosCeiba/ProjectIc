@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getPrice() {
-        autoViewModel.getPrice(data(), getCurrentDateTime())
+        autoViewModel.getPrice("Awe123", getCurrentDateTime())
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

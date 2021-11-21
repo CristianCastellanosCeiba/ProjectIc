@@ -6,5 +6,5 @@ import java.util.*
 interface AutoRepository {
     suspend fun registryAuto(auto: Auto, firstLetter: String)
     suspend fun exitAuto(registration: String)
-    suspend fun payment(auto: Auto, hourExit: Date)
+    suspend fun payment(registration: String, hourExit: Date)
 }

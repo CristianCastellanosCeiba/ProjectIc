@@ -27,10 +27,10 @@ class AutoViewModel(private val autoRepository: AutoRepositoryImpl): ViewModel()
         }
     }
 
-    fun getPrice(auto: Auto, hourExit: Date) {
+    fun getPrice(registration: String, hourExit: Date) {
         println("paso por el viewmodel")
         viewModelScope.launch {
-            autoRepository.payment(auto, hourExit)
+            autoRepository.payment(registration, hourExit)
         }
     }
 

@@ -17,4 +17,7 @@ interface AutoDao {
 
     @Query("DELETE FROM AutoEntity WHERE registration= :registration")
     suspend fun deleteVehicle(registration: String)
+
+    @Query("SELECT * FROM AutoEntity WHERE registration= :registration")
+    suspend fun getVehicle(registration: String): AutoEntity
 }
