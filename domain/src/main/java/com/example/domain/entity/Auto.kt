@@ -1,29 +1,32 @@
 package com.example.domain.entity
 
+import android.annotation.SuppressLint
+import com.example.domain.exception.NoEntryDay
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class Auto(override var registration: String, override var hourEntry: Date, override var hourExit: Date,
-           type: String,): Vehicle(registration, hourEntry, hourExit, type) {
+class Auto(
+    override var registration: String, override var hourEntry: Date, override var hourExit: Date?,
+    type: String,
+): Vehicle(registration, hourEntry, hourExit, type) {
 
-    private fun validateLetter(auto: Auto) {
-        val day = Calendar.DAY_OF_WEEK
-        if (auto.registration.startsWith("A")) {
-            if (day == Calendar.MONDAY || day == Calendar.SUNDAY) {
-                calculateHoursToPay(auto)
-            } else {
-                //Error
-            }
-        } else {
-            calculateHoursToPay(auto)
+    @SuppressLint("SimpleDateFormat")
+    fun validateLetter(firstLetter: String): Boolean {
+        val sdf = SimpleDateFormat("EEEE")
+        val d = Date()
+        val dayOfTheWeek: String = sdf.format(d)
+        if (firstLetter == "A" && (dayOfTheWeek == "Monday" || dayOfTheWeek == "Sunday")) {
+            return true
         }
+        throw NoEntryDay("Ingreso permitido los Lunes y Domingos")
     }
 
-    private fun calculateHoursToPay(auto: Auto) {
-        val difference: Long = auto.hourEntry.time - auto.hourExit.time
+    fun calculateHoursToPay(auto: Auto, hourExit: Date): Double {
+        val difference: Long = auto.hourEntry.time - hourExit.time
         val time = TimeUnit.MILLISECONDS.toMinutes(difference).toDouble()
-        println(time)
-        calculatePayment(time)
+        println("este es el tiempo $time")
+        return calculatePayment(time)
     }
 
     private fun calculatePayment(time: Double): Double {

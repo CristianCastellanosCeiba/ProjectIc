@@ -15,6 +15,6 @@ interface AutoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveVehicles(auto: AutoEntity)
 
-    @Query("DELETE FROM AutoEntity WHERE registration = :registration")
+    @Query("DELETE FROM AutoEntity WHERE registration= :registration")
     suspend fun deleteVehicle(registration: String)
 }

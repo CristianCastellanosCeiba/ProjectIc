@@ -3,4 +3,5 @@
     <string name="agreeRegistration">Placa del vehiculo</string>
     <string name="entry">Entrada</string>
     <string name="exit">Salida</string>
+    <string name="validatePrice">Validar pago</string>
 </resources>
