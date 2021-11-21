@@ -9,8 +9,7 @@ class AutoTranslator {
     fun fromDomainToEntity(auto: Auto): AutoEntity {
         return AutoEntity(
             auto.registration,
-            auto.hourEntry.toString(),
-            auto.hourExit.toString(),
+            auto.hourEntry.time,
             auto.type
         )
     }
@@ -19,7 +18,6 @@ class AutoTranslator {
         return Auto(
             autoEntity.registration,
             Date(autoEntity.hourEntry),
-            Date(autoEntity.hourExit),
             autoEntity.type
         )
     }

@@ -9,9 +9,7 @@ data class AutoEntity(
     @PrimaryKey
     val registration: String,
     @ColumnInfo(name = "hourEntry")
-    val hourEntry: String,
-    @ColumnInfo(name = "hourExit")
-    val hourExit: String,
+    val hourEntry: Long,
     @ColumnInfo(name = "type")
     val type: String
 )

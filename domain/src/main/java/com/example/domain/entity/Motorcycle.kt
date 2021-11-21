@@ -4,12 +4,12 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 data class Motorcycle(var cylinder: Int, override var registration: String,
-                      override var type: String, override var hourEntry: Date, override var hourExit: Date?
-): Vehicle(registration, hourEntry, hourExit, type) {
+                      override var type: String, override var hourEntry: Date
+): Vehicle(registration, hourEntry, type) {
 
     private var totalPayment: Double = 0.0
 
-    private fun calculateHoursToPay(motorcycle: Motorcycle) {
+    /*private fun calculateHoursToPay(motorcycle: Motorcycle) {
         val difference: Long = motorcycle.hourEntry.time - motorcycle.hourExit!!.time
         val time = TimeUnit.MILLISECONDS.toMinutes(difference).toDouble()
         println(time)
@@ -29,6 +29,6 @@ data class Motorcycle(var cylinder: Int, override var registration: String,
             totalPayment += 2000
         }
         return totalPayment
-    }
+    }*/
 
 }

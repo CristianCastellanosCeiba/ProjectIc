@@ -1,6 +1,8 @@
 package com.example.infrastructure.repository
 
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.domain.entity.Auto
 import com.example.domain.repository.AutoRepository
 import com.example.infrastructure.anticorruption.AutoTranslator
@@ -27,8 +29,10 @@ class AutoRepositoryImpl(context: Context): AutoRepository {
         vehicleDb.vehicleDao().deleteVehicle(registration)
     }
 
-    override suspend fun payment(registration: String, hourExit: Date) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    override suspend fun payment(registration: String, hourExit: Date): Double {
         val autoData = AutoTranslator().fromEntityToDomain(vehicleDb.vehicleDao().getVehicle(registration))
-        autoData
+        //return autoData.calculateHoursToPay(hourExit)
+        return autoData.getParkingHours()
     }
 }

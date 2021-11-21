@@ -2,8 +2,6 @@ package com.example.projectic.viewModel
 
 import androidx.lifecycle.*
 import com.example.domain.entity.Auto
-import com.example.domain.entity.Motorcycle
-import com.example.domain.repository.AutoRepository
 import com.example.infrastructure.repository.AutoRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,10 +25,11 @@ class AutoViewModel(private val autoRepository: AutoRepositoryImpl): ViewModel()
         }
     }
 
-    fun getPrice(registration: String, hourExit: Date) {
-        println("paso por el viewmodel")
-        viewModelScope.launch {
-            autoRepository.payment(registration, hourExit)
+    fun getPrice(registration: String, hourExit: Date) = liveData(Dispatchers.IO) {
+        try {
+            emit(autoRepository.payment(registration, hourExit))
+        } catch (e: Exception) {
+            emit(e)
         }
     }
 

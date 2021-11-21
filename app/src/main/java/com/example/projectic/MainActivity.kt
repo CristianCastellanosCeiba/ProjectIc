@@ -57,9 +57,10 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun getPrice() {
-        autoViewModel.getPrice("Awe123", getCurrentDateTime())
+        autoViewModel.getPrice("Awe123", getCurrentDateTime()).observe(this, {
+            Toast.makeText(this,"Valor a pagar: $it", Toast.LENGTH_LONG).show()
+        })
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -67,7 +68,6 @@ class MainActivity : AppCompatActivity() {
         return Auto(
            "Awe123",
             getCurrentDateTime(),
-            null,
             "Auto"
 
         )
