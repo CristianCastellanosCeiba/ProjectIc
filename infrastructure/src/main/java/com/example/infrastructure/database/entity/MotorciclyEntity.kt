@@ -5,15 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class MotorciclyEntity(
+data class MotorcycleEntity(
     @PrimaryKey
     val registration: String,
     @ColumnInfo(name = "hourEntry")
-    val hourEntry: String,
-    @ColumnInfo(name = "hourExit")
-    val hourExit: String,
+    val hourEntry: Long,
     @ColumnInfo(name = "type")
     val type: String,
     @ColumnInfo(name = "cylinder")
-    val cylinder: Int,
+    val cylinder: Int
 )

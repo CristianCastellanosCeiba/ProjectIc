@@ -1,6 +1,5 @@
 package com.example.domain.entity
 
-import android.annotation.SuppressLint
 import com.example.domain.exception.NoEntryDay
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,7 +15,6 @@ class Auto(
     private val secondsInOneMinute = 60
     private val minutesInOneHour = 60
 
-    @SuppressLint("SimpleDateFormat")
     fun validateLetter(firstLetter: String): Boolean {
         val sdf = SimpleDateFormat("EEEE")
         val d = Date()

@@ -4,5 +4,7 @@
     <string name="entry">Entrada</string>
     <string name="exit">Salida</string>
     <string name="validatePrice">Validar pago</string>
-    <string name="cylinder">Ingrese la cilindraje *Solo motos*</string>
+    <string name="cylinder">Ingrese cilindraje *Solo motos*</string>
+    <string name="autos">Autos</string>
+    <string name="motorcycles">Motos</string>
 </resources>

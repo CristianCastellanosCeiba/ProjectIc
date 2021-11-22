@@ -22,19 +22,21 @@ class AutoViewModel(private val autoRepository: AutoRepositoryImpl): ViewModel()
         }
     }
 
-    fun getPrice(registration: String, hourExit: Date) = liveData(Dispatchers.IO) {
+    fun getPrice(registration: String) = liveData(Dispatchers.IO) {
         try {
-            emit(autoRepository.payment(registration, hourExit))
+            emit(autoRepository.payment(registration))
         } catch (e: Exception) {
             emit(e)
         }
     }
 
-    fun getDeleteAuto(registration: String) = liveData(Dispatchers.IO) {
-        try {
-            emit(autoRepository.exitAuto(registration))
-        } catch (e: Exception) {
-            emit(e)
+    fun getDeleteAuto(registration: String) {
+        viewModelScope.launch {
+            try {
+                autoRepository.exitAuto(registration)
+            } catch (e: Exception) {
+                _errors.value = e
+            }
         }
     }
 

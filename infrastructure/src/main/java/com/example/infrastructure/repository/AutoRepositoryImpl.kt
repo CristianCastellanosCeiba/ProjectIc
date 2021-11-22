@@ -1,13 +1,11 @@
 package com.example.infrastructure.repository
 
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.domain.entity.Auto
 import com.example.domain.repository.AutoRepository
+import com.example.infrastructure.exception.NotDeleteCar
 import com.example.infrastructure.anticorruption.AutoTranslator
 import com.example.infrastructure.database.VehicleDb
-import java.util.*
 
 class AutoRepositoryImpl(context: Context): AutoRepository {
 
@@ -26,11 +24,15 @@ class AutoRepositoryImpl(context: Context): AutoRepository {
     }
 
     override suspend fun exitAuto(registration: String) {
-        vehicleDb.vehicleDao().deleteVehicle(registration)
+        try {
+            vehicleDb.vehicleDao().deleteVehicle(registration)
+        } catch (e: Exception) {
+            throw NotDeleteCar("Error al borrar el auto")
+        }
+
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override suspend fun payment(registration: String, hourExit: Date): Long {
+    override suspend fun payment(registration: String): Long {
         val autoData = AutoTranslator().fromEntityToDomain(vehicleDb.vehicleDao().getVehicle(registration))
         return autoData.calculatePayment()
     }

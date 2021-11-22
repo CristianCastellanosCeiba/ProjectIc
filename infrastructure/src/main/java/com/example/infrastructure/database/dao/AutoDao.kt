@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.infrastructure.database.entity.AutoEntity
+import com.example.infrastructure.database.entity.MotorcycleEntity
 
 @Dao
 interface AutoDao {
@@ -19,4 +20,16 @@ interface AutoDao {
 
     @Query("SELECT * FROM AutoEntity WHERE registration= :registration")
     suspend fun getVehicle(registration: String): AutoEntity
+
+    @Query("SELECT COUNT(*) FROM MotorcycleEntity")
+    suspend fun getAllMotorcycles(): Int
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveMotorcycles(moto: MotorcycleEntity)
+
+    @Query("DELETE FROM MotorcycleEntity WHERE registration= :registration")
+    suspend fun deleteMotorcycle(registration: String)
+
+    @Query("SELECT * FROM MotorcycleEntity WHERE registration= :registration")
+    suspend fun getMotorcycle(registration: String): MotorcycleEntity
 }

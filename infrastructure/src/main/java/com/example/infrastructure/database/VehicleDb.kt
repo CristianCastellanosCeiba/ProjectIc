@@ -6,9 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.infrastructure.database.dao.AutoDao
 import com.example.infrastructure.database.entity.AutoEntity
-import com.example.infrastructure.database.entity.MotorciclyEntity
+import com.example.infrastructure.database.entity.MotorcycleEntity
 
-@Database(entities = [AutoEntity::class, MotorciclyEntity::class], version = 1)
+@Database(entities = [AutoEntity::class, MotorcycleEntity::class], version = 1)
 abstract class VehicleDb: RoomDatabase() {
     abstract fun vehicleDao(): AutoDao
 
