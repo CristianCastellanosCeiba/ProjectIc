@@ -1,21 +1,26 @@
 package com.example.projectic.di
 
-import android.content.Context
+import com.example.domain.repository.AutoRepository
+import com.example.domain.repository.MotorcycleRepository
 import com.example.infrastructure.repository.AutoRepositoryImpl
 import com.example.infrastructure.repository.MotorcycleRepositoryImpl
-import com.example.projectic.viewModel.AutoViewModelFactory
-import com.example.projectic.viewModel.MotorcycleViewModelFactory
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 
 @Module
-class DiModule(private val context: Context) {
-    @Provides
-    @Singleton
-    fun provideAutoViewModelFactory() = AutoViewModelFactory(AutoRepositoryImpl(context))
+@InstallIn(ActivityComponent::class)
+abstract class DiModule {
 
-    @Provides
-    @Singleton
-    fun provideMotorcycleViewModelFactory() = MotorcycleViewModelFactory(MotorcycleRepositoryImpl(context))
+    @Binds
+    abstract fun bindAutoViewModel(
+        autoRepositoryImpl: AutoRepositoryImpl
+    ): AutoRepository
+
+    @Binds
+    abstract fun bindMotorcycleViewModel(
+        motorcycleRepositoryImpl: MotorcycleRepositoryImpl
+    ): MotorcycleRepository
+
 }

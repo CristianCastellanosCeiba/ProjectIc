@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'jacoco'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 jacoco {
@@ -42,7 +43,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.projectic"
-        minSdk 21
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -78,6 +79,9 @@ android {
     buildFeatures {
         viewBinding true
     }
+    hilt {
+        enableTransformForLocalTests = true
+    }
 }
 
 dependencies {
@@ -86,13 +90,17 @@ dependencies {
 
     //ViewModel and LiveData KTX
     // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     // LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
 
-    //Dagger
-    implementation 'com.google.dagger:dagger:2.28.3'
-    kapt 'com.google.dagger:dagger-compiler:2.15'
+    // Dagger Hilt
+    implementation 'com.google.dagger:hilt-android:2.38.1'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.38.1'
+    kapt 'com.google.dagger:hilt-android-compiler:2.38.1'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0'
+
+    implementation 'androidx.activity:activity-ktx:1.3.1'
 
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -101,4 +109,12 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //Mockito
+    //Mockito
+    implementation "org.mockito:mockito-core:3.8.0"
+}
+
+kapt {
+    correctErrorTypes true
 }
