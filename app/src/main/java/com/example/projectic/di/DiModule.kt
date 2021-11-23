@@ -9,11 +9,11 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 
-@Module
-@InstallIn(ActivityComponent::class)
+//@Module
+//@InstallIn(ActivityComponent::class)
 abstract class DiModule {
 
-    @Binds
+    /*@Binds
     abstract fun bindAutoViewModel(
         autoRepositoryImpl: AutoRepositoryImpl
     ): AutoRepository
@@ -21,6 +21,6 @@ abstract class DiModule {
     @Binds
     abstract fun bindMotorcycleViewModel(
         motorcycleRepositoryImpl: MotorcycleRepositoryImpl
-    ): MotorcycleRepository
+    ): MotorcycleRepository*/
 
 }

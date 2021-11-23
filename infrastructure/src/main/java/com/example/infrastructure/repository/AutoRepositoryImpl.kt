@@ -8,7 +8,8 @@ import com.example.infrastructure.database.VehicleDb
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
-class AutoRepositoryImpl @Inject constructor(@ActivityContext context: Context): AutoRepository {
+//class AutoRepositoryImpl @Inject constructor(@ActivityContext context: Context): AutoRepository {
+class AutoRepositoryImpl (context: Context): AutoRepository {
 
     private val vehicleDb: VehicleDb = VehicleDb.getDataBase(context)
 

@@ -8,8 +8,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class AutoViewModel @Inject constructor(private val autoRepository: AutoRepository): ViewModel() {
+//@HiltViewModel
+//class AutoViewModel @Inject constructor(private val autoRepository: AutoRepository): ViewModel() {
+class AutoViewModel (private val autoRepository: AutoRepository): ViewModel() {
 
     private val _errors = MutableLiveData<Exception>()
     val errors: LiveData<Exception> = _errors
@@ -24,13 +25,13 @@ class AutoViewModel @Inject constructor(private val autoRepository: AutoReposito
         }
     }
 
-    /*fun getPrice(registration: String) = liveData(Dispatchers.IO) {
+    fun getPrice(registration: String) = liveData(Dispatchers.IO) {
         try {
             emit(autoRepository.payment(registration))
         } catch (e: Exception) {
             emit(e)
         }
-    }*/
+    }
 
     fun getDeleteAuto(registration: String) {
         viewModelScope.launch {
@@ -42,9 +43,9 @@ class AutoViewModel @Inject constructor(private val autoRepository: AutoReposito
         }
     }
 
-    /*fun getAllAutos() = liveData(Dispatchers.IO) {
+    fun getAllAutos() = liveData(Dispatchers.IO) {
         emit(autoRepository.getAutos())
-    }*/
+    }
 }
 
 /*
