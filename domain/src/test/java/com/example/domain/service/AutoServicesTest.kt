@@ -16,10 +16,11 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.util.*
 
 
-@RunWith(MockitoJUnitRunner::class)
-class AutoServicesTest : TestCase() {
+//@RunWith(MockitoJUnitRunner::class)
+//class AutoServicesTest : TestCase() {
+class AutoServicesTest {
 
-    @Mock
+    /*@Mock
     private lateinit var autoRepository: AutoRepository
 
     @InjectMocks
@@ -53,6 +54,6 @@ class AutoServicesTest : TestCase() {
             Mockito.`when`(autoServices.exitAuto(registration)).thenReturn(null)
             assert(true)
         }
-    }
+    }*/
 
 }
