@@ -44,6 +44,10 @@ class MotorcycleViewModel (private val motorcycleServices: MotorcycleServices): 
     fun getAllMotorcycle() = liveData(Dispatchers.IO) {
         emit(motorcycleServices.getMotorcycles())
     }
+
+    fun getListMotorcycles() = liveData(Dispatchers.IO) {
+        emit(motorcycleServices.getListMotorcycles())
+    }
 }
 
 /*

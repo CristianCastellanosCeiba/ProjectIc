@@ -7,4 +7,5 @@
     <string name="cylinder">Ingrese cilindraje *Solo motos*</string>
     <string name="autos">Autos</string>
     <string name="motorcycles">Motos</string>
+    <string name="view">Ver</string>
 </resources>

@@ -12,16 +12,19 @@ class Auto(
         val sdf = SimpleDateFormat("EEEE")
         val d = Date()
         val dayOfTheWeek: String = sdf.format(d)
+        var result = false
         if (registration.substring(0,1).lowercase(Locale.forLanguageTag("es")) != "a") {
-            return true
+            result = true
         } else if (dayOfTheWeek == "Monday" || dayOfTheWeek == "Sunday") {
-            return true
+            result = true
         }
-        throw NoEntryDay("Ingreso permitido los Lunes y Domingos")
+        return result
     }
 
     fun calculatePay(): Long {
         return calculatePayment(8000, 1000)
     }
+
+    data class AutoList(val result: List<Auto> = listOf())
 
 }

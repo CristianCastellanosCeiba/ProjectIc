@@ -13,4 +13,6 @@ class MotorcycleServices (private val motorcycleRepository: MotorcycleRepository
     suspend fun payment(registration: String) = motorcycleRepository.payment(registration)
 
     suspend fun getMotorcycles(): Int = motorcycleRepository.getMotorcycles()
+
+    suspend fun getListMotorcycles(): Motorcycle.MotorcycleList = motorcycleRepository.getListMotorcycles()
 }

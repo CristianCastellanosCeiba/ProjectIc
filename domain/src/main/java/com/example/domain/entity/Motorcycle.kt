@@ -14,4 +14,6 @@ class Motorcycle(var cylinder: Int, override var registration: String,
         return totalValue
     }
 
+    data class MotorcycleList(val result: List<Motorcycle> = listOf())
+
 }

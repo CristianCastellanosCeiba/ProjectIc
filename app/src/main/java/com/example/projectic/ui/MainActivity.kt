@@ -1,4 +1,4 @@
-package com.example.projectic
+package com.example.projectic.ui
 
  import android.os.Bundle
  import android.widget.Toast
@@ -12,16 +12,18 @@ package com.example.projectic
  import com.example.infrastructure.repository.AutoRepositoryImpl
  import com.example.infrastructure.repository.MotorcycleRepositoryImpl
  import com.example.projectic.databinding.ActivityMainBinding
+ import com.example.projectic.ui.adapters.autos.AutosAdapter
+ import com.example.projectic.ui.adapters.motorcycles.MotorcyclesAdapter
  import com.example.projectic.viewModel.AutoViewModel
  import com.example.projectic.viewModel.MotorcycleViewModel
- import dagger.hilt.android.AndroidEntryPoint
  import java.text.SimpleDateFormat
  import java.util.*
- import javax.inject.Inject
 
 //@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adapterAutos: AutosAdapter
+    private lateinit var adapterMotorcycle: MotorcyclesAdapter
     private lateinit var motorcycleViewModel: MotorcycleViewModel
     private lateinit var autoViewModel: AutoViewModel
     /*@Inject
@@ -44,6 +46,12 @@ class MainActivity : AppCompatActivity() {
         }
         binding.button3.setOnClickListener {
             getPrice()
+        }
+        binding.buttonViewAutos.setOnClickListener {
+            getDataDbAutos()
+        }
+        binding.buttonViewMotorcycle.setOnClickListener {
+            getDataBdMotorcycles()
         }
         observer()
     }
@@ -141,11 +149,34 @@ class MainActivity : AppCompatActivity() {
         })
 
         autoViewModel.errors.observe(this, {
-            Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"${it.message}",Toast.LENGTH_SHORT).show()
         })
 
         motorcycleViewModel.errorsMotorcycle.observe(this, {
-            Toast.makeText(this, "${it.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    private fun getDataDbAutos() {
+        autoViewModel.getListAutos().observe(this, {
+            if (it.result.isEmpty()) {
+                Toast.makeText(this, "No hay registros.", Toast.LENGTH_LONG).show()
+            } else {
+                adapterAutos = AutosAdapter(it.result)
+                println("Este es el resultado ${it.result.toMutableList()}")
+                binding.rcVehicles.adapter = adapterAutos
+            }
+        })
+    }
+
+    private fun getDataBdMotorcycles() {
+        motorcycleViewModel.getListMotorcycles().observe(this, {
+            if (it.result.isEmpty()) {
+                Toast.makeText(this, "No hay registros.", Toast.LENGTH_LONG).show()
+            } else {
+                adapterMotorcycle = MotorcyclesAdapter(it.result)
+                binding.rcVehicles.adapter = adapterMotorcycle
+            }
         })
     }
 

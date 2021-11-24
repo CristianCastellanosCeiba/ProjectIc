@@ -5,8 +5,7 @@ import com.example.domain.entity.Auto
 import com.example.domain.repository.AutoRepository
 import com.example.infrastructure.anticorruption.AutoTranslator
 import com.example.infrastructure.database.VehicleDb
-import dagger.hilt.android.qualifiers.ActivityContext
-import javax.inject.Inject
+import com.example.infrastructure.database.entity.toAutoList
 
 //class AutoRepositoryImpl @Inject constructor(@ActivityContext context: Context): AutoRepository {
 class AutoRepositoryImpl (context: Context): AutoRepository {
@@ -29,6 +28,10 @@ class AutoRepositoryImpl (context: Context): AutoRepository {
     }
 
     override suspend fun getAutos(): Int {
-        return vehicleDb.vehicleDao().getAllVehicles()
+        return vehicleDb.vehicleDao().getCountVehicles()
+    }
+
+    override suspend fun getListAutos(): Auto.AutoList {
+        return vehicleDb.vehicleDao().getVehicles().toAutoList()
     }
 }

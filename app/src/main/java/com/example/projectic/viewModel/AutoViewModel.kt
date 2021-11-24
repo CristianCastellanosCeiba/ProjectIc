@@ -2,6 +2,7 @@ package com.example.projectic.viewModel
 
 import androidx.lifecycle.*
 import com.example.domain.entity.Auto
+import com.example.domain.exception.NoEntryDay
 import com.example.domain.repository.AutoRepository
 import com.example.domain.service.AutoServices
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,18 +21,14 @@ class AutoViewModel (private val autoServices: AutoServices): ViewModel() {
         viewModelScope.launch {
             try {
                 autoServices.registryAuto(auto)
-            } catch (e: Exception) {
+            } catch (e: NoEntryDay) {
                 _errors.value = e
             }
         }
     }
 
     fun getPrice(registration: String) = liveData(Dispatchers.IO) {
-        try {
-            emit(autoServices.payment(registration))
-        } catch (e: Exception) {
-            emit(e)
-        }
+        emit(autoServices.payment(registration))
     }
 
     fun getDeleteAuto(registration: String) {
@@ -46,6 +43,10 @@ class AutoViewModel (private val autoServices: AutoServices): ViewModel() {
 
     fun getAllAutos() = liveData(Dispatchers.IO) {
         emit(autoServices.getAutos())
+    }
+
+    fun getListAutos() = liveData(Dispatchers.IO) {
+        emit(autoServices.getListAutos())
     }
 }
 

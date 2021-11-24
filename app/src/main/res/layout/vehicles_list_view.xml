@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtRegistry"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="ASD123"/>
+
+        <TextView
+            android:id="@+id/txtHourEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="05:00"
+            android:layout_below="@+id/txtRegistry"
+            />
+
+        <TextView
+            android:id="@+id/txtType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Auto"
+            android:layout_below="@+id/txtRegistry"
+            android:layout_alignEnd="@+id/txtRegistry"
+            />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

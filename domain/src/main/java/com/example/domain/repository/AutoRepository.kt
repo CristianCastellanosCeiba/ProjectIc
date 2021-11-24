@@ -8,4 +8,5 @@ interface AutoRepository {
     suspend fun exitAuto(registration: String)
     suspend fun payment(registration: String): Long
     suspend fun getAutos(): Int
+    suspend fun getListAutos(): Auto.AutoList
 }

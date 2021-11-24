@@ -8,4 +8,5 @@ interface MotorcycleRepository {
     suspend fun exitMotorcycle(registration: String)
     suspend fun payment(registration: String): Long
     suspend fun getMotorcycles(): Int
+    suspend fun getListMotorcycles(): Motorcycle.MotorcycleList
 }

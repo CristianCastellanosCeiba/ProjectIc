@@ -10,7 +10,7 @@ import com.example.infrastructure.database.entity.MotorcycleEntity
 @Dao
 interface AutoDao {
     @Query("SELECT COUNT(*) FROM AutoEntity")
-    suspend fun getAllVehicles(): Int
+    suspend fun getCountVehicles(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveVehicles(auto: AutoEntity)
@@ -21,8 +21,11 @@ interface AutoDao {
     @Query("SELECT * FROM AutoEntity WHERE registration= :registration")
     suspend fun getVehicle(registration: String): AutoEntity
 
+    @Query("SELECT * FROM AutoEntity")
+    suspend fun getVehicles(): List<AutoEntity>
+
     @Query("SELECT COUNT(*) FROM MotorcycleEntity")
-    suspend fun getAllMotorcycles(): Int
+    suspend fun getCountMotorcycles(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveMotorcycles(moto: MotorcycleEntity)
@@ -32,4 +35,7 @@ interface AutoDao {
 
     @Query("SELECT * FROM MotorcycleEntity WHERE registration= :registration")
     suspend fun getMotorcycle(registration: String): MotorcycleEntity
+
+    @Query("SELECT * FROM MotorcycleEntity")
+    suspend fun getMotorcycles(): List<MotorcycleEntity>
 }

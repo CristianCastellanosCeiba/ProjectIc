@@ -17,7 +17,7 @@ class AutoServices (
             } else {
                 throw NoEntryDay("Ingreso permitido los Lunes y Domingos")
             }
-        } catch (e: Exception) {
+        } catch (e: NoEntryDay) {
             throw e
         }
     }
@@ -27,4 +27,6 @@ class AutoServices (
     suspend fun payment(registration: String) = autoRepository.payment(registration)
 
     suspend fun getAutos(): Int = autoRepository.getAutos()
+
+    suspend fun getListAutos(): Auto.AutoList = autoRepository.getListAutos()
 }
