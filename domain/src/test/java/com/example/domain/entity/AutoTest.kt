@@ -134,7 +134,7 @@ class AutoTest {
     }
 
     @Test
-    fun calculatePay_true() {
+    fun calculatePay_forHour_true() {
         val registration = "AFG789"
         var auto = Auto(registration, Date(), "Auto")
         println("Formato Date(): ${Date()}")

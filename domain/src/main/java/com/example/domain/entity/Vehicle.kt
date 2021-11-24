@@ -20,24 +20,21 @@ abstract class Vehicle(
 
     protected fun calculatePayment(payPorDay: Int, payPorHour: Int): Long {
         var parkingHours = getParkingHours()
-        var hoursToPay : Long = 0
-        var daysToPay : Long = 0
-        var totalValue : Long = 0
+        var hoursToPay: Long = 0
+        var daysToPay: Long = 0
 
-        if (parkingHours / 24 > 0){
+        if (parkingHours / 24 > 0) {
             daysToPay = parkingHours / 24
             parkingHours %= 24
         }
 
-        if (parkingHours >= 9){
+        if (parkingHours >= 9) {
             daysToPay++
-        }else{
+        } else {
             hoursToPay = parkingHours
         }
 
-        totalValue =  (daysToPay * payPorDay) + (hoursToPay * payPorHour)
-
-        return totalValue
+        return (daysToPay * payPorDay) + (hoursToPay * payPorHour)
     }
 
 }
