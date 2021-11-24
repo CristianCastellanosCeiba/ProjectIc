@@ -8,7 +8,7 @@ abstract class Vehicle(
     open var type: String
 ) {
 
-    private fun getParkingHours(): Long {
+    fun getParkingHours(): Long {
         var diff = Date().time - hourEntry.time
         var minutesDiff = (diff / (60 * 1000))
         return if (minutesDiff <= 60) {
@@ -18,7 +18,7 @@ abstract class Vehicle(
         }
     }
 
-    protected fun calculatePayment(payPorDay: Int, payPorHour: Int): Long {
+    fun calculatePayment(payPorDay: Int, payPorHour: Int): Long {
         var parkingHours = getParkingHours()
         var hoursToPay: Long = 0
         var daysToPay: Long = 0
