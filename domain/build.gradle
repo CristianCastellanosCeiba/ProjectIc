@@ -32,13 +32,9 @@ android {
         }
     }
     testOptions {
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
-                excludes = ['jdk.internal.*']
-            }
+        unitTests {
+            unitTests.returnDefaultValues = true
         }
-        unitTests.returnDefaultValues = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -50,37 +46,71 @@ android {
     tasks.withType(Test) {
         jacoco.includeNoLocationClasses = true
         jacoco.excludes = ['jdk.internal.*']
-
-        testLogging {
-            exceptionFormat "full"
-            events "skipped", "passed", "failed"
-            showStandardStreams true
-        }
         finalizedBy(jacocoTestReport)
     }
 }
 
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
-
     reports {
-        xml.enabled = true
-        html.enabled = true
+        xml.enabled true
+        html.enabled true
     }
 
-    def fileFilter = ['**/R.class',
-                      '**/R$*.class',
-                      '**/BuildConfig.*',
-                      '**/Manifest*.*',
-                      '**/*Test*.*',
-                      'android/**/*.*',
-                      '**/data/models/*']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def fileFilter = [
+            // data binding
+            'android/databinding/**/*.class',
+            '**/android/databinding/*Binding.class',
+            '**/android/databinding/*',
+            '**/androidx/databinding/*',
+            '**/BR.*',
+            // android
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            // dagger
+            '**/*_MembersInjector.class',
+            '**/Dagger*Component.class',
+            '**/Dagger*Component$Builder.class',
+            '**/Dagger*Subcomponent*.class',
+            '**/*Subcomponent$Builder.class',
+            '**/*Module_*Factory.class',
+            '**/di/module/*',
+            '**/*_Factory*.*',
+            '**/*Module*.*',
+            '**/*Dagger*.*',
+            '**/*Hilt*.*',
+            // kotlin
+            '**/*MapperImpl*.*',
+            '**/*$ViewInjector*.*',
+            '**/*$ViewBinder*.*',
+            '**/BuildConfig.*',
+            '**/*Component*.*',
+            '**/*BR*.*',
+            '**/Manifest*.*',
+            '**/*$Lambda$*.*',
+            '**/*Companion*.*',
+            '**/*Module*.*',
+            '**/*Dagger*.*',
+            '**/*Hilt*.*',
+            '**/*MembersInjector*.*',
+            '**/*_MembersInjector.class',
+            '**/*_Factory*.*',
+            '**/*_Provide*Factory*.*',
+            '**/*Extensions*.*',
+            // sealed and data classes
+            '**/*$Result.*',
+            '**/*$Result$*.*',
+    ]
+    def debugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"
 
-    getSourceDirectories().setFrom(files([mainSrc]))
-    getClassDirectories().setFrom(files([debugTree]))
-    getExecutionData().setFrom(fileTree(dir: project.buildDir, includes: [
-            'jacoco/testDebugUnitTest.exec', 'outputs/code_coverage/debugAndroidTest/connected/**/*.ec'
+    sourceDirectories.setFrom(files([mainSrc]))
+    classDirectories.setFrom(files([debugTree]))
+    executionData.setFrom(fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec"
     ]))
 }
 
