@@ -6,11 +6,11 @@ import javax.inject.Inject
 
 //class MotorcycleServices @Inject constructor(private val motorcycleRepository: MotorcycleRepository) {
 class MotorcycleServices (private val motorcycleRepository: MotorcycleRepository) {
-    suspend fun registryMotorcycle(motorcycle: Motorcycle) {
-        motorcycleRepository.registryMotorcycle(motorcycle)
-    }
+    suspend fun registryMotorcycle(motorcycle: Motorcycle) = motorcycleRepository.registryMotorcycle(motorcycle)
 
-    suspend fun registryMotorcycle(registration: String) {
-        motorcycleRepository.exitMotorcycle(registration)
-    }
+    suspend fun exitMotorcycle(registration: String) = motorcycleRepository.exitMotorcycle(registration)
+
+    suspend fun payment(registration: String) = motorcycleRepository.payment(registration)
+
+    suspend fun getMotorcycles(): Int = motorcycleRepository.getMotorcycles()
 }

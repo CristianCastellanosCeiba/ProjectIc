@@ -7,6 +7,8 @@ package com.example.projectic
  import com.example.domain.entity.Motorcycle
  import com.example.domain.repository.AutoRepository
  import com.example.domain.repository.MotorcycleRepository
+ import com.example.domain.service.AutoServices
+ import com.example.domain.service.MotorcycleServices
  import com.example.infrastructure.repository.AutoRepositoryImpl
  import com.example.infrastructure.repository.MotorcycleRepositoryImpl
  import com.example.projectic.databinding.ActivityMainBinding
@@ -48,10 +50,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun createDependencies() {
         val motorcycleRepository: MotorcycleRepository = MotorcycleRepositoryImpl(applicationContext)
-        motorcycleViewModel = MotorcycleViewModel(motorcycleRepository)
+        val motorcycleServices: MotorcycleServices = MotorcycleServices(motorcycleRepository)
+        motorcycleViewModel = MotorcycleViewModel(motorcycleServices)
 
         val autoRepository: AutoRepository = AutoRepositoryImpl(applicationContext)
-        autoViewModel = AutoViewModel(autoRepository)
+        val autoServices: AutoServices = AutoServices(autoRepository)
+        autoViewModel = AutoViewModel(autoServices)
     }
 
     private fun getRegistryAuto() {

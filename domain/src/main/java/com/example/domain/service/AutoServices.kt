@@ -23,4 +23,8 @@ class AutoServices (
     }
 
     suspend fun exitAuto(registration: String) = autoRepository.exitAuto(registration)
+
+    suspend fun payment(registration: String) = autoRepository.payment(registration)
+
+    suspend fun getAutos(): Int = autoRepository.getAutos()
 }
