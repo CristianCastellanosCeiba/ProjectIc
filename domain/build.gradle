@@ -43,16 +43,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-    testLogging {
-        exceptionFormat "full"
-        events "skipped", "passed", "failed"
-        showStandardStreams true
+    tasks.withType(Test) {
+        jacoco.includeNoLocationClasses = true
+        testLogging {
+            exceptionFormat "full"
+            events "skipped", "passed", "failed"
+            showStandardStreams true
+        }
+        finalizedBy(jacocoTestReport)
     }
-    finalizedBy(jacocoTestReport)
 }
 
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
