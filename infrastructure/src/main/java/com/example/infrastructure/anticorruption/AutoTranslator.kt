@@ -1,7 +1,6 @@
 package com.example.infrastructure.anticorruption
 
 import com.example.domain.entity.Auto
-import com.example.domain.entity.Motorcycle
 import com.example.infrastructure.database.entity.AutoEntity
 import java.util.*
 

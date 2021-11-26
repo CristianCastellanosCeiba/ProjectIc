@@ -3,7 +3,6 @@ package com.example.projectic.viewModel
 import androidx.lifecycle.*
 import com.example.domain.entity.Auto
 import com.example.domain.exception.NoEntryDay
-import com.example.domain.repository.AutoRepository
 import com.example.domain.service.AutoServices
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

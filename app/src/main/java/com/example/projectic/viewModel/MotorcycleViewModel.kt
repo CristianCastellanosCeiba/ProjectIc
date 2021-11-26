@@ -2,7 +2,6 @@ package com.example.projectic.viewModel
 
 import androidx.lifecycle.*
 import com.example.domain.entity.Motorcycle
-import com.example.domain.repository.MotorcycleRepository
 import com.example.domain.service.MotorcycleServices
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

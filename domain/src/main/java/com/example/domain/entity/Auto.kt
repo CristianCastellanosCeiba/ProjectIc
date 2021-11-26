@@ -1,6 +1,5 @@
 package com.example.domain.entity
 
-import com.example.domain.exception.NoEntryDay
 import java.text.SimpleDateFormat
 import java.util.*
 

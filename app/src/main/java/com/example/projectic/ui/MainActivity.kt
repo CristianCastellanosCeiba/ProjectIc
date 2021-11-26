@@ -6,12 +6,6 @@ package com.example.projectic.ui
  import androidx.appcompat.app.AppCompatActivity
  import com.example.domain.entity.Auto
  import com.example.domain.entity.Motorcycle
- import com.example.domain.repository.AutoRepository
- import com.example.domain.repository.MotorcycleRepository
- import com.example.domain.service.AutoServices
- import com.example.domain.service.MotorcycleServices
- import com.example.infrastructure.repository.AutoRepositoryImpl
- import com.example.infrastructure.repository.MotorcycleRepositoryImpl
  import com.example.projectic.databinding.ActivityMainBinding
  import com.example.projectic.ui.adapters.autos.AutosAdapter
  import com.example.projectic.ui.adapters.motorcycles.MotorcyclesAdapter

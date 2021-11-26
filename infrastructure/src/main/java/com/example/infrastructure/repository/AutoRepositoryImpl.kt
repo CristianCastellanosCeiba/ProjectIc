@@ -7,7 +7,6 @@ import com.example.infrastructure.anticorruption.AutoTranslator
 import com.example.infrastructure.database.VehicleDb
 import com.example.infrastructure.database.entity.toAutoList
 
-//class AutoRepositoryImpl @Inject constructor(@ActivityContext context: Context): AutoRepository {
 class AutoRepositoryImpl (context: Context): AutoRepository {
 
     private val vehicleDb: VehicleDb = VehicleDb.getDataBase(context)

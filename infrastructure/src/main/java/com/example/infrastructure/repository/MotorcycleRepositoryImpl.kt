@@ -7,7 +7,6 @@ import com.example.infrastructure.anticorruption.MotorcycleTranslator
 import com.example.infrastructure.database.VehicleDb
 import com.example.infrastructure.database.entity.toMotorcycleList
 
-//class MotorcycleRepositoryImpl @Inject constructor(@ActivityContext context: Context): MotorcycleRepository {
 class MotorcycleRepositoryImpl (context: Context): MotorcycleRepository {
 
     private val vehicleDb: VehicleDb = VehicleDb.getDataBase(context)

@@ -1,7 +1,6 @@
 package com.example.domain.repository
 
 import com.example.domain.entity.Motorcycle
-import java.util.*
 
 interface MotorcycleRepository {
     suspend fun registryMotorcycle(motorcycle: Motorcycle)
