@@ -1,17 +1,27 @@
 package com.example.projectic.di
 
-//@Module
-//@InstallIn(ActivityComponent::class)
-abstract class DiModule {
+import android.content.Context
+import com.example.domain.repository.AutoRepository
+import com.example.domain.repository.MotorcycleRepository
+import com.example.infrastructure.repository.AutoRepositoryImpl
+import com.example.infrastructure.repository.MotorcycleRepositoryImpl
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-    /*@Binds
-    abstract fun bindAutoViewModel(
-        autoRepositoryImpl: AutoRepositoryImpl
-    ): AutoRepository
+@Module
+@InstallIn(SingletonComponent::class)
+class DiModule {
 
-    @Binds
-    abstract fun bindMotorcycleViewModel(
-        motorcycleRepositoryImpl: MotorcycleRepositoryImpl
-    ): MotorcycleRepository*/
+    @Provides
+    @Singleton
+    fun injRepository(@ApplicationContext context: Context) : AutoRepository = AutoRepositoryImpl(context)
+
+    @Provides
+    @Singleton
+    fun injRepositoryMoto(@ApplicationContext context: Context) : MotorcycleRepository = MotorcycleRepositoryImpl(context)
 
 }
