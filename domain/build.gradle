@@ -45,11 +45,7 @@ android {
     }
     tasks.withType(Test) {
         jacoco.includeNoLocationClasses = true
-        testLogging {
-            exceptionFormat "full"
-            events "skipped", "passed", "failed"
-            showStandardStreams true
-        }
+        jacoco.excludes = ['jdk.internal.*']
         finalizedBy(jacocoTestReport)
     }
 }
