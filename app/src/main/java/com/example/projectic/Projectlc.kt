@@ -3,5 +3,5 @@ package com.example.projectic
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
-//@HiltAndroidApp
+@HiltAndroidApp
 class Projectlc: Application()

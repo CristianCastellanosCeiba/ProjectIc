@@ -9,9 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-//@HiltViewModel
-//class MotorcycleViewModel @Inject constructor(private val motorcycleRepository: MotorcycleRepository): ViewModel() {
-class MotorcycleViewModel (private val motorcycleServices: MotorcycleServices): ViewModel() {
+@HiltViewModel
+class MotorcycleViewModel @Inject constructor(private val motorcycleServices: MotorcycleServices): ViewModel() {
 
     private val _errors = MutableLiveData<Exception>()
     val errorsMotorcycle: LiveData<Exception> = _errors

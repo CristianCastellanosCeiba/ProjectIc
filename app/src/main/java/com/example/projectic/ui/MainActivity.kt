@@ -2,6 +2,7 @@ package com.example.projectic.ui
 
  import android.os.Bundle
  import android.widget.Toast
+ import androidx.activity.viewModels
  import androidx.appcompat.app.AppCompatActivity
  import com.example.domain.entity.Auto
  import com.example.domain.entity.Motorcycle
@@ -16,27 +17,22 @@ package com.example.projectic.ui
  import com.example.projectic.ui.adapters.motorcycles.MotorcyclesAdapter
  import com.example.projectic.viewModel.AutoViewModel
  import com.example.projectic.viewModel.MotorcycleViewModel
+ import dagger.hilt.android.AndroidEntryPoint
  import java.text.SimpleDateFormat
  import java.util.*
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterAutos: AutosAdapter
     private lateinit var adapterMotorcycle: MotorcyclesAdapter
-    private lateinit var motorcycleViewModel: MotorcycleViewModel
-    private lateinit var autoViewModel: AutoViewModel
-    /*@Inject
-    lateinit var autoViewModel: AutoViewModel
-    @Inject
-    lateinit var motorcycleViewModel: MotorcycleViewModel*/
+    private val motorcycleViewModel: MotorcycleViewModel by viewModels()
+    private val autoViewModel: AutoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        createDependencies()
 
         binding.button2.setOnClickListener {
             getRegistryAuto()
@@ -54,16 +50,6 @@ class MainActivity : AppCompatActivity() {
             getDataBdMotorcycles()
         }
         observer()
-    }
-
-    private fun createDependencies() {
-        val motorcycleRepository: MotorcycleRepository = MotorcycleRepositoryImpl(applicationContext)
-        val motorcycleServices: MotorcycleServices = MotorcycleServices(motorcycleRepository)
-        motorcycleViewModel = MotorcycleViewModel(motorcycleServices)
-
-        val autoRepository: AutoRepository = AutoRepositoryImpl(applicationContext)
-        val autoServices: AutoServices = AutoServices(autoRepository)
-        autoViewModel = AutoViewModel(autoServices)
     }
 
     private fun getRegistryAuto() {

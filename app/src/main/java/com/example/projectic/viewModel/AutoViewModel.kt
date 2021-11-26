@@ -10,9 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-//@HiltViewModel
-//class AutoViewModel @Inject constructor(private val autoRepository: AutoRepository): ViewModel() {
-class AutoViewModel (private val autoServices: AutoServices): ViewModel() {
+@HiltViewModel
+class AutoViewModel @Inject constructor(private val autoServices: AutoServices): ViewModel() {
 
     private val _errors = MutableLiveData<Exception>()
     val errors: LiveData<Exception> = _errors
